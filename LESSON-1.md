@@ -1,6 +1,6 @@
 # LESSON-N — FSD, сущности, features, страницы
 
-Ветка: `lesson-N`
+Ветка: `lesson-1`
 
 ## Запуск
 
@@ -10,6 +10,33 @@ npm run dev      # http://localhost:5173
 npm run build    # прод-сборка
 npm run lint     # ESLint
 ```
+
+## Чеклист
+
+- [x] **Проект по FSD** — 3 балла
+  - [x] Слои `app / pages / widgets / features / entities / shared` созданы
+  - [x] У каждого слайса есть `index.ts` (public API)
+  - [x] Настроены `paths` в tsconfig + резолверы для ESLint и Vite
+  - [x] Границы слоёв контролируются `eslint-plugin-boundaries`
+- [x] **Сущность Task** — 3 балла
+  - [x] Тип `Task` в `entities/task/model/types.ts`
+  - [x] Компонент `TaskCard` в `entities/task/ui`
+  - [x] Стили через CSS Modules
+  - [x] Публичный API в `entities/task/index.ts`
+- [x] **Список задач** — 3 балла
+  - [x] Хук `useTasks` с фильтрацией и удалением
+  - [x] Компонент `TaskList` в `features/taskList/ui`
+  - [x] Проброс пропсов в `TaskCard`
+  - [x] Использование `useState` в хуке
+- [x] **Вывод задач на странице** — 2 балла
+  - [x] `TasksPage` в `pages/tasks`
+  - [x] `TaskList` отрендерен на странице
+  - [x] `App` рендерит `TasksPage`
+- [x] **Бонус: FilterButton в shared** — 1 балл
+  - [x] Компонент в `shared/ui/FilterButton`
+  - [x] Используется в `TaskList`
+
+**Итого: 12 / 12 баллов.**
 
 ## Что сделано
 
@@ -91,33 +118,6 @@ src/
 - `index.ts` — публичный API компонента.
 
 Используется в `TaskList` для кнопок фильтрации: `active={filter === value}`.
-
-## Чеклист
-
-- [x] **Проект по FSD** — 3 балла
-  - [x] Слои `app / pages / widgets / features / entities / shared` созданы
-  - [x] У каждого слайса есть `index.ts` (public API)
-  - [x] Настроены `paths` в tsconfig + резолверы для ESLint и Vite
-  - [x] Границы слоёв контролируются `eslint-plugin-boundaries`
-- [x] **Сущность Task** — 3 балла
-  - [x] Тип `Task` в `entities/task/model/types.ts`
-  - [x] Компонент `TaskCard` в `entities/task/ui`
-  - [x] Стили через CSS Modules
-  - [x] Публичный API в `entities/task/index.ts`
-- [x] **Список задач** — 3 балла
-  - [x] Хук `useTasks` с фильтрацией и удалением
-  - [x] Компонент `TaskList` в `features/taskList/ui`
-  - [x] Проброс пропсов в `TaskCard`
-  - [x] Использование `useState` в хуке
-- [x] **Вывод задач на странице** — 2 балла
-  - [x] `TasksPage` в `pages/tasks`
-  - [x] `TaskList` отрендерен на странице
-  - [x] `App` рендерит `TasksPage`
-- [x] **Бонус: FilterButton в shared** — 1 балл
-  - [x] Компонент в `shared/ui/FilterButton`
-  - [x] Используется в `TaskList`
-
-**Итого: 12 / 12 баллов.**
 
 ## Проверка
 
