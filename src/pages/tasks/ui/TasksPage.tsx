@@ -1,10 +1,12 @@
-import { TaskList } from 'features/taskList';
+import { TaskWidget } from 'widgets/task';
 
 export function TasksPage() {
   return (
-    <main>
-      <h1>Задачи</h1>
-      <TaskList />
-    </main>
+    <>
+      <h1>Это заголовок</h1>
+      <main>
+        <TaskWidget />
+      </main>
+    </>
   );
 }
