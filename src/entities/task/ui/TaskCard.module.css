@@ -1,0 +1,20 @@
+.card {
+  padding: 12px 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.card p {
+  margin: 0;
+  font-size: 15px;
+  color: #222;
+}
+
+.card input[type='checkbox'] {
+  cursor: pointer;
+}
