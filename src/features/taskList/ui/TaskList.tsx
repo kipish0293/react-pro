@@ -10,7 +10,7 @@ const FILTERS: { value: Filter; label: string }[] = [
 ];
 
 export function TaskList() {
-  const { tasks, filter, setFilter, removeTask } = useTasks();
+  const { tasks, filter, setFilter, removeTask, toggleTask } = useTasks();
 
   return (
     <div className={styles.wrapper}>
@@ -28,6 +28,7 @@ export function TaskList() {
         <ul className={styles.list}>
           {tasks.map((task) => (
             <li key={task.id} className={styles.item}>
+              <input type="checkbox" onClick={() => toggleTask(task.id)} checked={task.completed} />
               <TaskCard task={task} />
               <button
                 type="button"
