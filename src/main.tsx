@@ -1,5 +1,7 @@
+import { store } from 'app/store/store.ts';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import { Provider } from 'react-redux';
 import App from './app/App.tsx';
 import './index.css';
 
@@ -8,6 +10,8 @@ const root = createRoot(container!);
 
 root.render(
   <StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </StrictMode>,
 );
