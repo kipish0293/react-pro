@@ -1,39 +1,40 @@
 import type { Task } from 'entities/task';
-import { useCallback, useMemo, useState } from 'react';
+import { useGetTasksQuery } from 'entities/task/api/taskApi';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 export type Filter = 'all' | 'completed' | 'incomplete';
 
-const initialTasks: Task[] = [
-  { id: '1', title: 'Alice', completed: false },
-  { id: '2', title: 'Bob', completed: false },
-  { id: '3', title: 'Charlie', completed: false },
-  { id: '4', title: 'David', completed: true },
-  { id: '5', title: 'Alice', completed: false },
-  { id: '6', title: 'Bob', completed: false },
-  { id: '7', title: 'Charlie', completed: false },
-  { id: '8', title: 'David', completed: true },
-];
-
 export function useTasks() {
-  const [tasks, setTasks] = useState<Task[]>(initialTasks);
+  const { data: remoteTasks = [], isLoading, isError, refetch } = useGetTasksQuery();
+
+  const [tasks, setTasks] = useState<Task[]>([]);
   const [filter, setFilter] = useState<Filter>('all');
 
-  const removeTask = useCallback((id: string) => {
-    setTasks((prev) => prev.filter((task) => task.id !== id));
+  // флаг: копировали ли мы уже данные с сервера
+  const initialized = useRef(false);
+
+  useEffect(() => {
+    if (!initialized.current && remoteTasks.length > 0) {
+      initialized.current = true;
+
+      setTasks(remoteTasks);
+    }
+  }, [remoteTasks]);
+
+  const removeTask = useCallback((id: number) => {
+    setTasks((prev) => prev.filter((t) => t.id !== id));
   }, []);
 
-  const toggleTask = useCallback((id: string) => {
-    setTasks((prev) =>
-      prev.map((task) => (task.id === id ? { ...task, completed: !task.completed } : task)),
-    );
+  const toggleTask = useCallback((id: number) => {
+    setTasks((prev) => prev.map((t) => (t.id === id ? { ...t, completed: !t.completed } : t)));
   }, []);
 
   const filteredTasks = useMemo(() => {
     switch (filter) {
       case 'completed':
-        return tasks.filter((task) => task.completed);
+        return tasks.filter((t) => t.completed);
       case 'incomplete':
-        return tasks.filter((task) => !task.completed);
+        return tasks.filter((t) => !t.completed);
       default:
         return tasks;
     }
@@ -45,5 +46,8 @@ export function useTasks() {
     setFilter,
     removeTask,
     toggleTask,
+    isLoading,
+    isError,
+    refetch,
   };
 }
