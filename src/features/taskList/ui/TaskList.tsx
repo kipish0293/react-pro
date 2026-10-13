@@ -1,3 +1,4 @@
+// src/features/taskList/ui/TaskList.tsx
 import { TaskCard } from 'entities/task';
 import { FilterButton } from 'shared/ui/FilterButton';
 import { useTasks, type Filter } from '../model/useTasks';
@@ -10,7 +11,11 @@ const FILTERS: { value: Filter; label: string }[] = [
 ];
 
 export function TaskList() {
-  const { tasks, filter, setFilter, removeTask, toggleTask } = useTasks();
+  const { tasks, filter, setFilter, removeTask, toggleTask, isLoading, isError, refetch } =
+    useTasks();
+
+  if (isLoading) return <p className={styles.state}>Загрузка...</p>;
+  if (isError) return <p className={styles.state}>Ошибка загрузки</p>;
 
   return (
     <div className={styles.wrapper}>
@@ -20,6 +25,9 @@ export function TaskList() {
             {label}
           </FilterButton>
         ))}
+        <button type="button" onClick={refetch}>
+          Обновить
+        </button>
       </div>
 
       {tasks.length === 0 ? (
@@ -28,16 +36,7 @@ export function TaskList() {
         <ul className={styles.list}>
           {tasks.map((task) => (
             <li key={task.id} className={styles.item}>
-              <input type="checkbox" onClick={() => toggleTask(task.id)} checked={task.completed} />
-              <TaskCard task={task} />
-              <button
-                type="button"
-                className={styles.removeBtn}
-                onClick={() => removeTask(task.id)}
-                aria-label="Удалить задачу"
-              >
-                ✕
-              </button>
+              <TaskCard task={task} onToggle={toggleTask} onRemove={removeTask} />
             </li>
           ))}
         </ul>

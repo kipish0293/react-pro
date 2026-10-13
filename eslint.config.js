@@ -78,10 +78,11 @@ export default [
         {
           default: 'disallow',
           rules: [
-            { from: 'features', allow: ['shared', 'entities'] },
             { from: 'entities', allow: ['shared'] },
+            { from: 'features', allow: ['shared', 'entities'] },
             { from: 'widgets', allow: ['shared', 'features', 'entities'] },
-            { from: 'pages', allow: ['widgets', 'features', 'entities', 'shared'] },
+            { from: 'pages', allow: ['shared', 'features', 'entities', 'widgets'] },
+            { from: 'app', allow: ['shared', 'features', 'entities', 'widgets'] },
           ],
         },
       ],
