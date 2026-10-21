@@ -1,12 +1,14 @@
-import { TasksPage } from 'pages/tasks/ui/TasksPage';
-import styles from './App.module.css';
+import { RegisterPage } from 'pages/register/ui/RegisterPage'
+import { WisardPage } from 'pages/wisard/ui/WisardPage'
+import styles from './App.module.css'
 
 function App() {
-  return (
-    <div className={styles.container}>
-      <TasksPage />;
-    </div>
-  );
+    return (
+        <div className={styles.container}>
+            <RegisterPage />
+            <WisardPage />
+        </div>
+    )
 }
 
-export default App;
+export default App
