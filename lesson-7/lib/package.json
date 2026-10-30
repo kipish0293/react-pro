@@ -1,0 +1,27 @@
+{
+  "name": "@hw/build-hw-lib",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "npm run bundle && npm run swc",
+    "bundle": "tsx configs/esbuild.lib.config.ts",
+    "swc": "npm run swc:esm && npm run swc:cjs",
+    "swc:esm": "swc index.ts math.ts string.ts -d dist/swc/esm",
+    "swc:cjs": "swc index.ts math.ts string.ts -d dist/swc/cjs --config-file .swcrc.commonjs.json",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "react": ">=18.3.1"
+  },
+  "devDependencies": {
+    "@swc/cli": "0.7.10",
+    "@swc/core": "1.16.20",
+    "@types/lodash": "4.17.27",
+    "@types/node": "24.19.2",
+    "@types/react": "19.3.0",
+    "esbuild": "0.25.12",
+    "tsx": "4.23.15",
+    "typescript": "5.9.3"
+  }
+}
