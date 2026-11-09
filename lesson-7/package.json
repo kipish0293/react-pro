@@ -1,0 +1,15 @@
+{
+  "name": "build-hw",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "workspaces": [
+    "app",
+    "lib"
+  ],
+  "scripts": {
+    "build": "npm run build -w @hw/build-hw-lib && npm run build -w build-hw-app",
+    "dev": "npm run dev -w build-hw-app",
+    "typecheck": "npm run typecheck -w build-hw-app && npm run typecheck -w @hw/build-hw-lib"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "build-hw-app",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "cross-env BUILD_MODE=prod tsx configs/esbuild.app.config.ts",
+    "dev": "cross-env BUILD_MODE=dev tsx configs/esbuild.app.config.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "24.19.2",
+    "cross-env": "^10.1.0",
+    "esbuild": "0.25.12",
+    "tsx": "4.23.15",
+    "typescript": "5.9.3"
+  }
+}
